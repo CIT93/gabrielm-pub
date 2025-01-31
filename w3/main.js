@@ -26,3 +26,18 @@ const numberInhousehold = 3;
 
 determinedHouseholdpts(3)
 determinedHouseholdpts(4)
+
+let homeSizepts = 0;
+const sizeOfhome = "medium"
+
+if (sizeOfhome === "large") {
+    homeSizepts = homeSizepts = 10;
+}   else if (sizeOfhome === "medium") {
+    homeSizepts = homeSizepts = 7;
+}   else if (sizeOfhome === "small") {
+    homeSizepts = homeSizepts = 4;
+}   else if (sizeOfhome === "apartment") {
+    homeSizepts = homeSizepts = 2;
+}
+
+console.log(`Based on the size of home ${sizeOfhome} the points would be ${homeSizepts}.`);

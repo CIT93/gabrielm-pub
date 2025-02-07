@@ -11,7 +11,8 @@ function determineHouseSizePts(size) {
         houseSizePoints = 4;
     } else if (size === "apt") {
         houseSizePoints = 2;
-    } 
+    }
+    return houseSizePoints;
 }
 
 function determineHouseholdpts(numberInhousehold) {
@@ -35,44 +36,33 @@ function determineHouseholdpts(numberInhousehold) {
     return houseHoldpoints;
 }
 
-function start(houseHoldmembers, houseSize) {
-    const householdPTS = determineHouseholdpts(houseHoldmembers);
+function start(houseHoldMembers, houseSize) {
+    const houseHoldPTS = determineHouseholdpts(houseHoldMembers);
     const houseSizePTS = determineHouseSizePts(houseSize);
-    const total = houseSizePTS + householdPTS;
-    cfpData.push([houseHoldmembers,houseSize,householdPTS,houseSizePTS,total]);
+    const total = houseHoldPTS + houseSizePTS;
+    cfpData.push([houseHoldMembers,houseSize,houseHoldPTS,houseSizePTS,total]);
 }
 
 function displayOutput(){
-
+    for (arr of cfpData){
+        console.log(arr)
+        const output = document.getElementById("output");
+        const newP = document.createElement("p");
+        newP.textContent = `When the number of household members is ${arr[0]}, the carbon score for household members is ${arr[2]}. And when the house size is ${arr[1]}, the carbon score for house size is ${arr[3]}. This means the Carbon footprint total so far is ${arr[4]}`;
+        output.appendChild(newP)
+    }
 }
 
-start(1,"large");
-start(2,"large");
-start(3,"large");
-start(4,"large");
-start(5,"large");
-start(6,"large");
-start(7,"large");
-start(1,"medium");
-start(2,"medium");
-start(3,"medium");
-start(4,"medium");
-start(5,"medium");
-start(6,"medium");
-start(7,"medium");
-start(1,"small");
-start(2,"small");
-start(3,"small");
+start(3,"apt");
+start(2,"apt");
 start(4,"small");
-start(5,"small");
-start(6,"small");
-start(7,"small");
-start(1,"large");
-start(2,"large");
-start(3,"large");
-start(4,"large");
-start(5,"large");
+start(3,"small");
+start(5,"medium");
+start(2,"medium");
 start(6,"large");
 start(7,"large");
 
 displayOutput()
+
+const myHeading = document.querySelector("h1");
+myHeading.textContent = " Carbon Footprint Project, Spring 2025 "

@@ -1,4 +1,4 @@
-
+const cfpData = [];
 
 function determineHouseSizePts(size) {
     let houseSizePoints = 0;
@@ -53,19 +53,32 @@ function start(houseHoldMembers, houseSize) {
     const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
     const houseSizePTS = determineHouseSizePts(houseSize);
     const total = houseHoldPTS + houseSizePTS;
-    const cfpObj = {
+    cfpData.push({
         houseM: houseHoldMembers,
         houseS: houseSize,
         houseMPTS: houseHoldPTS,
         houseSPTS: houseSizePTS,
         cfpTotal: total
-    }
-    displayOutObj(cfpObj);
+    });
 
-    
 }
 
-
+function displayOutput() {
+    for(obj of cfpData) {
+        console.log(obj)
+        const output = document.getElementById("output");
+        const newP = document.createElement("p");
+        const newH2 = document.createElement("h2");
+        newH2.textContent = `Carbon Footprint ${obj.cfpTotal}`;
+        const newH3 = document.createElement("h3");
+        newH3.textContent = `Based on number in household and size of home`;
+        newP.textContent = `This number is based on the number of members in the home of ${obj.houseM} (score: ${obj.houseMPTS})`;
+        newP.textContent += ` and a ${obj.houseS} size of home (score: ${obj.houseSPTS})`;
+        output.appendChild(newH2);
+        output.appendChild(newH3);
+        output.appendChild(newP);
+    }
+}
 
 start(1, "apt");
 start(2, "apt");
@@ -96,3 +109,4 @@ start(5, "large");
 start(6, "large");
 start(7, "large");
 
+displayOutput();

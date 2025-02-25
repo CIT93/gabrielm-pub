@@ -111,19 +111,30 @@
 
 //displayOutput();
 
-const movieArr = [
-    {title: "Django Unchained", year: 2012, rating: 10},
-    {title: "Back to the Future Part I, II, III", year: 1985, rating: 10},
-    {title: "Transformers", year: 2007, rating: 9}
-];
-
-function displayOutput() {
-const output = document.getElementById("output");
-    for(const obj of movieArr){
-    const newH2 = document.createElement("h2");
-    newH2.textContent = `The movie(s) ${obj.title}, released in ${obj.year} has a rating of ${obj.rating}.`;
-    output.appendChild(newH2);
+function displayMovies(movies) {
+    const movieEl = document.getElementById("movies");
+    movies.forEach(function(movie) {
+        if(movie.rating >= 6 && movie.watched >= 5) {
+        const li = document.createElement("li");
+        li.textContent = `The movie(s) ${movie.title}, released in ${movie.year} has a rating of ${movie.rating}.`;
+        movieEl.appendChild(li);
+        }
+    });
 }
-    }
-
-displayOutput()
+    
+displayMovies([{
+    title: "Django Unchained", 
+    year: 2012, 
+    rating: 10, 
+    watched: 5
+},{
+    title: "Back to the Future Part I, II, III", 
+    year: 1985, 
+    rating: 10, 
+    watched: 25
+},{
+    title: "Transformers", 
+    year: 2007, 
+    rating: 9, 
+    watched: 40
+}]);

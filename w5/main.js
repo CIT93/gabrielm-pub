@@ -113,6 +113,9 @@
 
 function displayMovies(movies) {
     const movieEl = document.getElementById("movies");
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tr = document.createElement("tr");
     movies.forEach(function(movie) {
         if(movie.rating >= 6 && movie.watched >= 5) {
         const li = document.createElement("li");
@@ -120,8 +123,11 @@ function displayMovies(movies) {
         movieEl.appendChild(li);
         }
     });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    return table
 }
-    
+
 displayMovies([{
     title: "Django Unchained", 
     year: 2012, 

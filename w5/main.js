@@ -114,18 +114,21 @@
 function displayMovies(movies) {
     const movieEl = document.getElementById("movies");
     const table = document.createElement("table");
-    const thead = document.createElement("thead");
-    const tr = document.createElement("tr");
+    const row = document.createElement("tr");
     movies.forEach(function(movie) {
         if(movie.rating >= 6 && movie.watched >= 5) {
-        const li = document.createElement("li");
-        li.textContent = `The movie(s) ${movie.title}, released in ${movie.year} has a rating of ${movie.rating}.`;
-        movieEl.appendChild(li);
+            for (const key in movie) {
+                const cell = document.createElement("td");
+                cell.textContent = movie[key];
+                row.appendChild(cell);
+            }
+            table.appendChild(row)
+            movieEl.appendChild(table)
+        //const li = document.createElement("li");
+        //li.textContent = `The movie(s) ${movie.title}, released in ${movie.year} has a rating of ${movie.rating}.`;
+        //movieEl.appendChild(li);
         }
     });
-    thead.appendChild(tr);
-    table.appendChild(thead);
-    return table
 }
 
 displayMovies([{

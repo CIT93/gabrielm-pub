@@ -4,6 +4,7 @@ function renderTblHeading() {
     TBL.innerHTML = ``;
     const table = document.createElement("table");
     const thead = document.createElement("thead");
+    thead.id = 'table-heading';
     const tr = document.createElement("tr");
     const headingTextArr = ["Name", "Household", "HouseSize", "Footprint", "Actions"];
     headingTextArr.forEach(function (text) {
@@ -23,11 +24,20 @@ function renderTblBtn(index, data){
     btnEdit.textContent = "Edit";
     btnDel.textContent = "Del";
     td.appendChild(btnEdit);
+    btnDel.addEventListener(`click`, function(e) {
+        
+    }
     td.appendChild(btnDel);
     btnDel.addEventListener(`click`, function(e){
         console.log(`Hello from inside the delete button`);
         console.log(e);
         data.splice(index, 1);
+        if (data.length === 0) {
+            const thead = document.getElementById('table-heading');
+            if (thead) {
+                thead.remove();
+            }
+        }
         renderTbl(data);
     })
     btnEdit.addEventListener(`click`, function(e){
@@ -56,10 +66,14 @@ function renderTblBody(data) {
 }
 
 function renderTbl(data) {
+    TBL.innerHTML = '';
+    if (data.length > 0) {
     const table = renderTblHeading();
     const tbody = renderTblBody(data);
     table.appendChild(tbody);
     TBL.appendChild(table);
 }
+}
 
 export { renderTbl, renderTblHeading };
+

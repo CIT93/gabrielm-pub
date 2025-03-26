@@ -24,9 +24,6 @@ function renderTblBtn(index, data){
     btnEdit.textContent = "Edit";
     btnDel.textContent = "Del";
     td.appendChild(btnEdit);
-    btnDel.addEventListener(`click`, function(e) {
-        
-    }
     td.appendChild(btnDel);
     btnDel.addEventListener(`click`, function(e){
         console.log(`Hello from inside the delete button`);

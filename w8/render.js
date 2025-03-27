@@ -1,10 +1,10 @@
 const TBL = document.getElementById("tab-data");
+const FORM = document.getElementById("form");
 
 function renderTblHeading() {
-    TBL.innerHTML = ``;
+    //TBL.innerHTML = "";
     const table = document.createElement("table");
     const thead = document.createElement("thead");
-    thead.id = 'table-heading';
     const tr = document.createElement("tr");
     const headingTextArr = ["Name", "Household", "HouseSize", "Footprint", "Actions"];
     headingTextArr.forEach(function (text) {
@@ -17,7 +17,7 @@ function renderTblHeading() {
     return table
 }
 
-function renderTblBtn(index, data){
+function renderTblBtn(obj, index, data){
     const td = document.createElement("td");
     const btnEdit = document.createElement("button");
     const btnDel = document.createElement("button");
@@ -26,19 +26,16 @@ function renderTblBtn(index, data){
     td.appendChild(btnEdit);
     td.appendChild(btnDel);
     btnDel.addEventListener(`click`, function(e){
-        console.log(`Hello from inside the delete button`);
-        console.log(e);
         data.splice(index, 1);
-        if (data.length === 0) {
-            const thead = document.getElementById('table-heading');
-            if (thead) {
-                thead.remove();
-            }
-        }
         renderTbl(data);
     })
     btnEdit.addEventListener(`click`, function(e){
-        
+       FORM[1].value = obj.firstname;
+       FORM[2].value = obj.lastname;
+       FORM[3].value = obj.houseM;
+       FORM[4].value = obj.houseS;
+       data.splice(index, 1);
+       renderTbl(data); 
     })
     return td;
 }
@@ -55,7 +52,7 @@ function renderTblBody(data) {
                 tr.appendChild(td);
             }
         }
-        const td = renderTblBtn(index, data);
+        const td = renderTblBtn(obj, index, data);
         tr.appendChild(td);
         tbody.appendChild(tr);
     })
@@ -63,14 +60,14 @@ function renderTblBody(data) {
 }
 
 function renderTbl(data) {
-    TBL.innerHTML = '';
-    if (data.length > 0) {
+    TBL.innerHTML = ""; 
+   if(data.length !== 0){
     const table = renderTblHeading();
     const tbody = renderTblBody(data);
     table.appendChild(tbody);
     TBL.appendChild(table);
-}
+   }
+    
 }
 
 export { renderTbl, renderTblHeading };
-

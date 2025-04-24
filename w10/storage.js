@@ -1,4 +1,4 @@
-const saveLS = () => {
+const saveLS = cfpData => {
     const serializedArr = JSON.stringify(cfpData);
     localStorage.setItem("cfp", serializedArr);
 }

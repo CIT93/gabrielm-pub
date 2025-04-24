@@ -7,7 +7,7 @@ const renderTblHeading = () => {
     const thead = document.createElement("thead");
     const tr = document.createElement("tr");
     const headingTextArr = ["Name", "Household", "HouseSize", "Footprint", "Actions"];
-    headingTextArr.forEach( (text) => {
+    headingTextArr.forEach( text => {
         const th = document.createElement("th");
         th.textContent = text;
         tr.appendChild(th);
@@ -31,10 +31,10 @@ const renderTblBtn = (obj, index, data) => {
     btnDel.textContent = "Del";
     td.appendChild(btnEdit);
     td.appendChild(btnDel);
-    btnDel.addEventListener(`click`, (e) => {
+    btnDel.addEventListener(`click`, e => {
       onUpdate(index, data);  
     })
-    btnEdit.addEventListener(`click`, (e) => {
+    btnEdit.addEventListener(`click`, e => {
        FORM[1].value = obj.firstName;
        FORM[2].value = obj.lastName;
        FORM[3].value = obj.houseM;
@@ -44,7 +44,7 @@ const renderTblBtn = (obj, index, data) => {
     return td;
 }
 
-const renderTblBody = (data) => {
+const renderTblBody = data => {
     const tbody = document.createElement("tbody");
     data.forEach( (obj, index) => {
         const tr = document.createElement("tr");
@@ -62,7 +62,7 @@ const renderTblBody = (data) => {
     return tbody;
 }
 
-const renderTbl = (data) => {
+const renderTbl = data => {
     TBL.innerHTML = ""; 
    if(data.length !== 0){
     const table = renderTblHeading();
